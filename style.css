@@ -1,0 +1,10 @@
+/* Styles go here */
+
+.box{
+    width:70%;
+    float:left; 
+}
+.menu{
+    width:30%;
+    float:left; 
+}
