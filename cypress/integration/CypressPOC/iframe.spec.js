@@ -1,11 +1,24 @@
+require('cypress-iframe');
+const getIframeBody = () => {
+  // get the iframe > document > body
+  // and retry until the body element is not empty
+  return cy
+  .get('iframe[name="iframe_a"]')
+  .its('0.contentDocument.body').should('not.be.empty')
+  // wraps "body" DOM element to allow
+  // chaining more Cypress commands, like ".find(...)"
+  // https://on.cypress.io/wrap
+  .then(cy.wrap)
+}
 describe('example to-do app', () => {
    
-  beforeEach(() => {
-    // Cypress starts out with a blank slate for each test
-    // so we must tell it to visit our website with the `cy.visit()` command.
-    // Since we want to visit the same URL at the start of all our tests,
-    // we include it in our beforeEach function so that it runs before each test
-    cy.visit('file:///C:/WorkingFolder/CypressPOC/CypressPoc/index.html')
-  })
-}
-)
+  it('Should vist!', () => {
+    cy.visit('index.html')
+    getIframeBody().find('#A2').should('have.text', 'Search Tool').click()
+    var value=getIframeBody().find('#A1').should('have.attr', 'href');
+    console.log(value);
+    // .then((href) => {
+      // cy.visit(href)
+    // })
+  });
+});
