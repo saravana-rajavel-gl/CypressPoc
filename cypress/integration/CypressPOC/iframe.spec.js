@@ -9,10 +9,6 @@ describe('example to-do app', () => {
     cy.visit('index.html')
     cy.frameLoaded('#iframe_a');
     cy.iframe('#iframe_a').find('#A2').should('be.visible').click();
-    // cy.wait(3000)    
-    // cy.frameLoaded('#iframe_b');
-//    cy.iframe('#iframe_b').its('0.contentDocument.body').then(cy.wrap).find('#sb_form_q').should('be.visible').type('Hello, World')
-   
   })
   it('iframe 2 contents check', () => {    
     cy.iframe('#iframe_b').find('#sb_form_q').should('be.visible').type('Hello, World')  
@@ -20,9 +16,18 @@ describe('example to-do app', () => {
   })
   it('iframe Multi tabs issue', () => {    
     cy.iframe('#iframe_a').find('#A1').should('be.visible')
-    cy.iframe('#iframe_a')
-    .find('#A1')
-    .invoke('removeAttr', 'target').click();
-    cy.go('back');
+    cy.iframe('#iframe_a').find('#A1').should('be.visible').each(($el) => {
+      const herf = $el.attr('href');
+      URLa=herf;
+      cy.log(URLa);
+      cy.log(herf);
+      cy.iframe('#iframe_b').invoke('attr', 'src', herf)      
+      cy.frameLoaded('#iframe_b');
+      })
+  })
+  it('iframe Multi tabs issue1', () => {
+    cy.pause();
+    cy.visit(URLa);
+    cy.log(URLa);
   })
 });
