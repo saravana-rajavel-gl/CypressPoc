@@ -1,28 +1,36 @@
 import 'cypress-iframe'
+import { get } from 'cypress/types/lodash'
 
 describe('working in iFrames', function () {
-    it('method', function () {
+    it('method W3Schools', function () {
         cy.visit('index.html')
         cy.wait(2000)
         getIframeBody().find('#A2').invoke('removeAttr', 'target').click()
         cy.wait(2000)
         getIframeBody().find('#search2').type('cypress')
         getIframeBody().find('#listofsearchresults a').click()
-    })
-
-    it('method', function () {
+        cy.wait(2000)
         cy.visit('index.html')
         cy.wait(2000)
-        //getIframeBody().find('#A1').invoke('removeAttr', 'target').click()
+})
+    it('method login',function() {        
+        getIframeBody().find('#alogin').click();
+        cy.wait(1000)
+        getIframeBody2().find('input[name="username"]').type('test')
+        getIframeBody2().find('input[name="password"]').type('test')
+        getIframeBody2().find('button[type="submit"]').click()
+})
+
+    it('method Search Bing', function () {
         getIframeBody().find('#A1').click();
-        cy.wait(2000)
-        getIframeBody2().find('#sb_form_q').type('cypress')
-        getIframeBody2().find('#sa_ul li').eq(1).click()
-    })
+        cy.wait(1000)        
+        getIframeBody2().find('#sb_form_q').type('cypress automation{enter}')
+        cy.wait(5000)        
+        getIframeBody2().find('a[href="https://www.tutorialspoint.com/cypress-test-automation"]').click()
+})
 
     const getIframeDocument = () => {
         return cy
-            //.get('iframe[data-cy="the-frame"]')
             .get('#iframe_a')
             .its('0.contentDocument').should('exist')
     }
@@ -37,7 +45,6 @@ describe('working in iFrames', function () {
 
     const getIframeDocument2 = () => {
         return cy
-            //.get('iframe[data-cy="the-frame"]')
             .get('#iframe_b')
             .its('0.contentDocument').should('exist')
     }
