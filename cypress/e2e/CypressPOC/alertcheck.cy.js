@@ -11,5 +11,5 @@ describe('Example to demonstrate handling of JavaScript Alerts, Confirm, Prompt 
         })
         cy.on('window:confirm', () => true);
         cy.get('#result').should('have.text', 'You successfully clicked an alert')
-})
+    })
 })

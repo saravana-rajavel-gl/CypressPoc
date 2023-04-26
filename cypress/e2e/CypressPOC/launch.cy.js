@@ -9,6 +9,7 @@ describe('working in iFrames', function () {
     //     .should('have.attr', 'href')
     //     .then((href) => {
     //         cy.visit(href);
+    
     //         cy.wait(4000);
     //     })
     // })
@@ -47,7 +48,10 @@ describe('working in iFrames', function () {
         //cy.visit('https://Google.co.in')
         cy.visit('index.html')
         cy.wait(4000)
-        getIframeBody().find('#A2').invoke('removeAttr', 'target').click()
+        //getIframeBody().find('#A2').invoke('removeAttr', 'target').click()
+        getIframeBody().find('#A2').should('have.attr', 'target', '_blank') // check target attr has _blank
+        .invoke('attr', 'target', '_self')
+        .click()
         cy.wait(4000)
         getIframeBody().find('#search2').type('cypress')
         getIframeBody().find('#listofsearchresults a').click()

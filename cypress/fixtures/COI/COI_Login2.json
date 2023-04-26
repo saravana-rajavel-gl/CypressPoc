@@ -1,0 +1,21 @@
+[
+    {
+        "username":"Global.logic",
+        "password":"Demo1234!",
+        "expected":"Global Logic"
+    },
+    {
+        "username":"Global.logic",
+        "password":"Demo1234",
+        "expected":"The username or password is invalid.  Try again"
+        
+    },
+    {
+        "username":"Global.logic",
+        "password":"Demo1234!",
+        "expected":""
+        
+    }
+]
+    
+    
