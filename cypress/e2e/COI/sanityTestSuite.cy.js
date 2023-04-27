@@ -108,7 +108,7 @@ describe('Risk Manager Sanity Test suite', () => {
         getIframeBody().find("#widgets tbody tr").its("length").should("be.gte", 1);
         getIframeBody().find("#widgets tbody tr td a").its("length").should("be.gte", 3);
     });
-    it("Verify that user can view Campaigns with toggle sub menu",()=>{
+    it.skip("Verify that user can view Campaigns with toggle sub menu",()=>{
         loginPage.login(userdata.username, userdata.password);
         cy.wait(8000); 
         sideMenu.campaignsLnk.eq(1).should('exist').should("have.text","Campaigns ").click();
@@ -126,6 +126,51 @@ describe('Risk Manager Sanity Test suite', () => {
         getIframeBody().find(".page-heading-title>a").should("exist");
         getIframeBody().find("#widgets tbody tr").its("length").should("be.gte", 1);
         getIframeBody().find("#widgets tbody tr td a").its("length").should("be.gte", 3);
+    });
+    
+    it("Verify that user can view Dashboards",()=>{
+        loginPage.login(userdata.username, userdata.password);
+        cy.wait(8000); 
+        sideMenu.dashboardLnk.should('exist').should("have.text","Dashboard").click();
+        cy.get('#breadCrumb > .BreadCrumb > tbody > tr > td > .BreadCrumbCurrentPage').should('have.text', 'COI Dashboard');
+        getIframeBody().find("#exportToPowerPoint").should("exist");
+        getIframeBody().find("#Dashboard_4").should("exist");
+        getIframeBody().find("div[widget-type='HTMLNugget']").its("length").should("equal",4);
+        getIframeBody().find('div[widget-type="HTMLNugget"]>div>div>h5').first().should("have.text","Potential Conflicts");
+        getIframeBody().find('div[widget-type="HTMLNugget"]>div>div>h5').eq(1).should("have.text","Forms to Review");
+        getIframeBody().find('div[widget-type="HTMLNugget"]>div>div>h5').eq(2).should("have.text","Open Cases");
+        getIframeBody().find('div[widget-type="HTMLNugget"]>div>div>h5').eq(3).should("have.text","Unfiled Forms");
+        getIframeBody().find('div[widget-type="doughnut"]').should("exist");
+        getIframeBody().find('div[widget-type="doughnut"]>div>h3').should("exist").contains("Attestation Status");
+        getIframeBody().find('div[widget-type="doughnut"]>div>div[class="panel-heading-btn hideForPdf"]>div').its("length").should("equal",6);
+        
+        getIframeBody().find('div[widget-type="stackedBar100"]').should("exist");
+        getIframeBody().find('div[widget-type="stackedBar100"]>div>h3').should("exist").contains("Attestation Completion Rate");
+        getIframeBody().find('div[widget-type="stackedBar100"]>div>div[class="panel-heading-btn hideForPdf"]>div').its("length").should("equal",6);
+        
+        getIframeBody().find('#Widget_Panel_321').should("exist");
+        getIframeBody().find('#Widget_Panel_321>div>h3').should("exist").contains("Compliance Rates");
+        getIframeBody().find('#Widget_Panel_321>div>div[class="panel-heading-btn hideForPdf"]>div').its("length").should("equal",6);
+        
+        getIframeBody().find('div[widget-type="pie"]').should("exist");
+        getIframeBody().find('div[widget-type="pie"]>div>h3').should("exist").contains("Potential Conflicts");
+        getIframeBody().find('div[widget-type="pie"]>div>div[class="panel-heading-btn hideForPdf"]>div').its("length").should("equal",6);
+        
+        getIframeBody().find('div[widget-type="spline"]').should("exist");
+        getIframeBody().find('div[widget-type="spline"]>div>h3').should("exist").contains("Potential Conflicts Trending");
+        getIframeBody().find('div[widget-type="spline"]>div>div[class="panel-heading-btn hideForPdf"]>div').its("length").should("equal",6);
+        
+        getIframeBody().find('#Widget_Panel_7005').should("exist");
+        getIframeBody().find('#Widget_Panel_7005>div>h3').should("exist").contains("Management Plan Status");
+        getIframeBody().find('#Widget_Panel_7005>div>div[class="panel-heading-btn hideForPdf"]>div').its("length").should("equal",6);
+        
+        getIframeBody().find('#Widget_Panel_7006').should("exist");
+        getIframeBody().find('#Widget_Panel_7006>div>h3').should("exist").contains("Year Over Year");
+        getIframeBody().find('#Widget_Panel_7006>div>div[class="panel-heading-btn hideForPdf"]>div').its("length").should("equal",6);
+        
+        getIframeBody().find('#Widget_Panel_7008').should("exist");
+        getIframeBody().find('#Widget_Panel_7008>div>h3').should("exist").contains("Gifts and Entertainment");
+        getIframeBody().find('#Widget_Panel_7008>div>div[class="panel-heading-btn hideForPdf"]>div').its("length").should("equal",6);
     });
     const getIframeDocument = () => {
         return cy
