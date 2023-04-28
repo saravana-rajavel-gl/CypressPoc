@@ -37,5 +37,6 @@ class sideMenu {
     get campaignsLnk(){
         return cy.get('.nav-section>a[href="/coiriskmanager/OCS/ResponseHistory.aspx"]')
     }
+
 }
 module.exports = new sideMenu();
