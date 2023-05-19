@@ -10,7 +10,7 @@ describe('Risk Manager Sanity Test suite', () => {
     beforeEach(() => {
         cy.visit('https://coi3qa.ospreycompliancesuite.com/coiriskmanager/Login.aspx');
     })
-    it.skip('Login Page validations', () => {
+    it('Login Page validations', () => {
         cy.fixture('COI/COI_Login2').then((data1) => {
             data1.forEach((userdetails) => {
                 cy.visit('https://coi3qa.ospreycompliancesuite.com/coiriskmanager/Login.aspx');
@@ -30,7 +30,7 @@ describe('Risk Manager Sanity Test suite', () => {
             })
         })
     });
-    it.skip('Verify the logged in user can view Home Menu item and is able to click on to view Home Page ', () => {
+    it('Verify the logged in user can view Home Menu item and is able to click on to view Home Page ', () => {
         loginPage.login(userdata.username, userdata.password);
         cy.wait(7000);
         cy.get('.nav-section').should('have.length', 10);
@@ -47,7 +47,7 @@ describe('Risk Manager Sanity Test suite', () => {
         cy.get('#giftsGrid>tbody>.DataGridItem>td>input').should('be.visible');
     });
 
-    it.skip('Verify that user can view forms that need to be reviewed in review center if any of participants for whom he is supervisor submits a form', () => {
+    it('Verify that user can view forms that need to be reviewed in review center if any of participants for whom he is supervisor submits a form', () => {
         loginPage.login(userdata.username, userdata.password);
         cy.wait(8000);
         cy.get("#OAIContainer_header_reviewerCenterLink").should('exist').click();
@@ -59,7 +59,7 @@ describe('Risk Manager Sanity Test suite', () => {
         cy.get('.sc-bxivhb.diQBEv>INPUT').should('be.visible');
         cy.get('input[placeholder="Name, Conflicts..."]').should('exist').type(userdata.username);
     });
-    it.skip('Verify that user can view My Management Plans', () => {
+    it('Verify that user can view My Management Plans', () => {
         loginPage.login(userdata.username, userdata.password);
         cy.wait(8000);
         sideMenu.managementPlansLnk.should('exist').click();
@@ -80,7 +80,7 @@ describe('Risk Manager Sanity Test suite', () => {
             expect(t).to.contain("'By signing this plan you affirm that you have read and agree to the assigned management plan. If you have questions about it, please contact your supervisor or management plan administrator before signing the plan.'");
         })
     });
-    it.skip('Verify that user can view Study Management', () => {
+    it('Verify that user can view Study Management', () => {
         loginPage.login(userdata.username, userdata.password);
         cy.wait(8000); 
         sideMenu.studyLnk.should('exist').click();
@@ -92,7 +92,7 @@ describe('Risk Manager Sanity Test suite', () => {
         cy.get("#commonSearch_clearSelection").should("be.visible");
         cy.get('#searchResults tbody tr.DataGridItem td').first().should('contain.text', 'GLTest Study Management141').first().click();
     });
-    it.skip("Verify that user can view Reports with toggle sub menu",()=>{
+    it("Verify that user can view Reports with toggle sub menu",()=>{
         loginPage.login(userdata.username, userdata.password);
         cy.wait(8000); 
         sideMenu.reportsLnk.should('exist').click();
@@ -108,7 +108,7 @@ describe('Risk Manager Sanity Test suite', () => {
         getIframeBody().find("#widgets tbody tr").its("length").should("be.gte", 1);
         getIframeBody().find("#widgets tbody tr td a").its("length").should("be.gte", 3);
     });
-    it.skip("Verify that user can view Campaigns with toggle sub menu",()=>{
+    it("Verify that user can view Campaigns with toggle sub menu",()=>{
         loginPage.login(userdata.username, userdata.password);
         cy.wait(8000); 
         sideMenu.campaignsLnk.eq(1).should('exist').should("have.text","Campaigns ").click();
