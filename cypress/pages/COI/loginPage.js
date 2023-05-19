@@ -6,7 +6,7 @@ class loginPage {
         return cy.get("#password");
     }
     get LoginBtn() {
-        return cy.get("#loginButton");
+        return cy.get('#loginButton');
     }
     get logoImage() {
         return cy.get("#logoImage");
@@ -19,6 +19,19 @@ class loginPage {
     }
     get helpLink() {
         return cy.get("#helpLink");
+    }
+    get btnLanguageLnk(){
+        return cy.get("#btnLanguagePage");
+    }
+
+    get btnENLnk(){
+        return cy.get("#btnEN");
+    }
+    get btnRULnk(){
+        return cy.get("#btnRU");
+    }
+    get btnzhHantLnk(){
+        return cy.get("#btnzh-Hant");
     }
     login(Usernameval, passwordVal) {
         this.Username.type(Usernameval);
